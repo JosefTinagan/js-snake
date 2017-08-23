@@ -7,3 +7,14 @@ h1{
 .test{
 	background-color: red;
 }
+
+#container{
+	width: 1000px;
+	height: 1000px;
+}
+
+#container div{
+	display: inline-block;
+	vertical-align: top;
+	outline: 1px solid yellow;
+}
