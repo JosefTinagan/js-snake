@@ -14,7 +14,16 @@ h1{
 }
 
 #container div{
-	display: inline-block;
-	vertical-align: top;
-	outline: 1px solid yellow;
+	
+	outline: 1px solid black;
+}
+
+.this{
+  float: left;
+  width: 20px;
+  height: 20px;
+}
+
+.clear-left{
+  clear: left;
 }
