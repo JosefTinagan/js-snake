@@ -1,21 +1,10 @@
 $(document).ready(function(){
 
-	function Cell(content=" "){
-	  this.content = content;
-	};
-
-	var Grid = function(x=20,y=20){
-	  var $rows = x;
-	  var $columns = y;
-	  console.log($rows + "x" + $columns);
-	  for(var i = 0; i < $rows; i++){
-	  	for(var j = 0; j < $columns; j++){
-	  		$('<div id=' + i + "." + j +  ' class="this">' + " " + '</div>').appendTo("#grid");  		
-	  		$('#grid div:nth-child(' + ($columns * j) + ')').addClass("clear-left");
-
-	  	}
-	  }
-	};
+	var $snake= {
+	  position: [20,20],
+	  initial_direction: 'r',
+	  current_snake: [[20,20]]
+	}
 	
 	var $grid ={
 	  content: " ",
@@ -30,7 +19,7 @@ $(document).ready(function(){
 	};
 
 	var render = function(){
-	  var half = $grid.rows / 2;
+	  var half = 20;
 	  for(var i = 1; i <= $grid.rows; i++){
 	    for(var j = 1; j <= $grid.columns; j++){
 	      
@@ -62,6 +51,11 @@ $(document).ready(function(){
 		testgrid.changeRowValue(30);
 		console.log(testgrid.rows);
 		render();
+		console.log($snake);
+		
+		for(var i = 0; i < $snake.current_snake.length; i++){
+		  console.log($snake.current_snake[i]);
+		}
 	})
 
 	var testFunctions = function(){
@@ -120,6 +114,19 @@ $(document).ready(function(){
 });
 
 /*
+var Grid = function(x=20,y=20){
+	  var $rows = x;
+	  var $columns = y;
+	  console.log($rows + "x" + $columns);
+	  for(var i = 0; i < $rows; i++){
+	  	for(var j = 0; j < $columns; j++){
+	  		$('<div id=' + i + "." + j +  ' class="this">' + " " + '</div>').appendTo("#grid");  		
+	  		$('#grid div:nth-child(' + ($columns * j) + ')').addClass("clear-left");
+
+	  	}
+	  }
+	};
+
 var grid = {
 	  content: " ",
 	  test_array: new Array(40);
