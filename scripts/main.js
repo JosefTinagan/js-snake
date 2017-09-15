@@ -19,8 +19,8 @@ $(document).ready(function(){
 	
 	var $grid ={
 	  content: " ",
-	  rows: 20,
-	  columns: 20,
+	  rows: 40,
+	  columns: 40,
 	  changeRowValue: function(x){
 	    this.rows = x;
 	  },
@@ -31,12 +31,18 @@ $(document).ready(function(){
 
 	var render = function(){
 	  var half = $grid.rows / 2;
-	  for(var i = 0; i < $grid.rows; i++){
-	    for(var j = 0; j < $grid.columns; j++){
-	      $('<div id=' + i + "." + j + ' class="this">' + $grid.content + '</div>').appendTo("#grid");
+	  for(var i = 1; i <= $grid.rows; i++){
+	    for(var j = 1; j <= $grid.columns; j++){
+	      
+	      
 	      if( i === half && j == half){
 	        $('<div id=' + i + "." + j + ' class="this">' + "0" + '</div>').appendTo("#grid");
+	      } else if(j == 1 && i !== 1){
+	      	$('<div id=' + i + "." + j + ' class="this clear-left">' + $grid.content + '</div>').appendTo("#grid")
+	      } else {
+	      	$('<div id=' + i + "." + j + ' class="this">' + $grid.content + '</div>').appendTo("#grid")
 	      }
+	      //$('#grid div:nth-child(' + ($columns * j) + ')').addClass("clear-left");
 	    }
 	  }
 	  console.log("Finding a node to place the snake head");
