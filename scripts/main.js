@@ -58,6 +58,14 @@ $(document).ready(function(){
 		}
 	})
 
+	$("#container").keypress(function(event){
+	  console.log("Pressed the key of" + event.key + " with a keycode of" + event.keyCode);
+	  //Arrow Left : 37
+	  //Arrow Up : 38
+	  //Arrow Right : 39
+	  // Arrow Down : 40
+	});
+
 	var testFunctions = function(){
 		console.log("Testing Cell Function");
 		var test_cell = new Cell("testing content");
