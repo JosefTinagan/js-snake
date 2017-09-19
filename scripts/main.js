@@ -3,7 +3,11 @@ $(document).ready(function(){
 	var $snake= {
 	  position: [20,20],
 	  initial_direction: 'r',
-	  current_snake: [[20,20]]
+	  current_direction: 'r',
+	  current_snake: [[20,20]],
+	  changeDirection: function(param){
+	    this.current_direction = param;
+	  }
 	}
 	
 	var $grid ={
@@ -36,7 +40,12 @@ $(document).ready(function(){
 	  }
 	  console.log("Finding a node to place the snake head");
 	//  $('#grid div:nth-child(' + 100 + ')').text("0");
-	}
+	};
+
+	var move = function(param){
+	  console.log(param);
+	  
+	};
 
 
 	$("#start").click(function(){
@@ -56,7 +65,9 @@ $(document).ready(function(){
 		for(var i = 0; i < $snake.current_snake.length; i++){
 		  console.log($snake.current_snake[i]);
 		}
-	})
+	});
+
+
 
 	$("#container").keypress(function(event){
 	  console.log("Pressed the key of" + event.key + " with a keycode of" + event.keyCode);
@@ -64,6 +75,15 @@ $(document).ready(function(){
 	  //Arrow Up : 38
 	  //Arrow Right : 39
 	  // Arrow Down : 40
+	  switch(event.keyCode){
+	    case 37: $snake.changeDirection("l"); break;
+	    case 38: $snake.changeDirection("u"); break;
+	    case 39: $snake.changeDirection("r"); break;
+	    case 40: $snake.changeDirection("d"); break;
+	    default: break;
+	  }
+	  console.log($snake.current_direction);
+	  
 	});
 
 	var testFunctions = function(){
@@ -76,11 +96,15 @@ $(document).ready(function(){
 		console.log(test_grid);
 		console.log(test_grid.grid);
 	};
-	/*
+});	
+
+/*
+
+	
 	var render  = function(){
 	  createGrid();
 	};
-	*/
+	
 
 	var test_array = new Array(40);
 
@@ -121,7 +145,8 @@ $(document).ready(function(){
 	}
 });
 
-/*
+
+
 var Grid = function(x=20,y=20){
 	  var $rows = x;
 	  var $columns = y;
