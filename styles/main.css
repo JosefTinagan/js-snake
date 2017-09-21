@@ -13,9 +13,14 @@ h1{
 	height: 1000px;
 }
 
+
 #container div{
 	
 	outline: 1px solid black;
+}
+
+#container #grid{
+	outline: none;
 }
 
 .this{
@@ -26,4 +31,8 @@ h1{
 
 .clear-left{
   clear: left;
+}
+
+.blue{
+  background-color: blue;
 }

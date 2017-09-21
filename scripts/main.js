@@ -4,7 +4,7 @@ $(document).ready(function(){
 	  position: [20,20],
 	  initial_direction: 'r',
 	  current_direction: 'r',
-	  current_snake: [[20,20]],
+	  current_snake: [[20,20],[20,21]],
 	  changeDirection: function(param){
 	    this.current_direction = param;
 	  }
@@ -43,9 +43,31 @@ $(document).ready(function(){
 	};
 
 	var move = function(param){
-	  console.log(param);
-	  
+	  direction = $snake.current_direction
+	  switch(direction){
+	    case "u": console.log("Going up"); break;
+	    case "d": console.log("Going down"); break;
+	    case "l": console.log("Going left"); break;
+	    case "r": console.log("Going right"); break;
+	  }
 	};
+
+	var showSnake = function(){
+	  current_array = $snake.current_snake;
+	  for(var i = 0; i < current_array.length; i++){
+	    console.log(current_array[i]);
+	    console.log(current_array[i][0]);
+	    console.log(current_array[i][1]);
+	    first = current_array[i][0];
+	    second = current_array[i][1];
+	    $('#'+ first + '\\.' + second).addClass("blue");
+	  }
+
+	}
+
+	var gameLoop = function(){
+    
+	}
 
 
 	$("#start").click(function(){
@@ -65,9 +87,8 @@ $(document).ready(function(){
 		for(var i = 0; i < $snake.current_snake.length; i++){
 		  console.log($snake.current_snake[i]);
 		}
+		showSnake();
 	});
-
-
 
 	$("#container").keypress(function(event){
 	  console.log("Pressed the key of" + event.key + " with a keycode of" + event.keyCode);
@@ -83,7 +104,6 @@ $(document).ready(function(){
 	    default: break;
 	  }
 	  console.log($snake.current_direction);
-	  
 	});
 
 	var testFunctions = function(){
