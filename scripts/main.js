@@ -42,13 +42,49 @@ $(document).ready(function(){
 	//  $('#grid div:nth-child(' + 100 + ')').text("0");
 	};
 
+	var newTurn = function(){
+
+	}
+
 	var move = function(param){
 	  direction = $snake.current_direction
 	  switch(direction){
-	    case "u": console.log("Going up"); break;
-	    case "d": console.log("Going down"); break;
-	    case "l": console.log("Going left"); break;
-	    case "r": console.log("Going right"); break;
+	    case "u": console.log("Going up"); 
+	    		  var temp_arr = $snake.current_snake;
+	    		  var temp = [temp_arr[0][0] - 1, temp_arr[0][1]];
+	    		  temp_arr.pop();
+	    		  temp_arr.push(temp);
+	    		  console.log($snake.current_snake);
+	    		  $snake.current_snake = temp_arr;
+	    		  console.log($snake.current_snake);
+	    			break;
+	    case "d": console.log("Going down"); 
+	    		  var temp_arr = $snake.current_snake;
+	    		  var temp = [temp_arr[0][0] + 1, temp_arr[0][1]];
+	    		  temp_arr.pop();
+	    		  temp_arr.push(temp);
+	    		  console.log($snake.current_snake);
+	    		  $snake.current_snake = temp_arr;
+	    		  console.log($snake.current_snake);
+	    		  break;
+	    case "l": console.log("Going left"); 
+	    		  var temp_arr = $snake.current_snake;
+	    		  var temp = [temp_arr[0][0], temp_arr[0][1] - 1];
+	    		  temp_arr.pop();
+	    		  temp_arr.push(temp);
+	    		  console.log($snake.current_snake);
+	    		  $snake.current_snake = temp_arr;
+	    		  console.log($snake.current_snake);
+	    		  break;
+	    case "r": console.log("Going right"); 
+	    		  var temp_arr = $snake.current_snake;
+	    		  var temp = [temp_arr[0][0], temp_arr[0][1 + 1]];
+	    		  temp_arr.pop();
+	    		  temp_arr.push(temp);
+	    		  console.log($snake.current_snake);
+	    		  $snake.current_snake = temp_arr;
+	    		  console.log($snake.current_snake);
+	    		  break;
 	  }
 	};
 
@@ -87,7 +123,8 @@ $(document).ready(function(){
 		for(var i = 0; i < $snake.current_snake.length; i++){
 		  console.log($snake.current_snake[i]);
 		}
-		showSnake();
+		
+
 	});
 
 	$("#container").keypress(function(event){
@@ -104,6 +141,8 @@ $(document).ready(function(){
 	    default: break;
 	  }
 	  console.log($snake.current_direction);
+	  move();
+		showSnake();
 	});
 
 	var testFunctions = function(){
