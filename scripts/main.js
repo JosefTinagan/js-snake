@@ -52,8 +52,9 @@ $(document).ready(function(){
 	    case "u": console.log("Going up"); 
 	    		  var temp_arr = $snake.current_snake;
 	    		  var temp = [temp_arr[0][0] - 1, temp_arr[0][1]];
-	    		  temp_arr.pop();
-	    		  temp_arr.push(temp);
+	    		  var remove = temp_arr.pop();
+	    		  removeSnake(remove);
+	    		  temp_arr.unshift(temp);
 	    		  console.log($snake.current_snake);
 	    		  $snake.current_snake = temp_arr;
 	    		  console.log($snake.current_snake);
@@ -61,8 +62,9 @@ $(document).ready(function(){
 	    case "d": console.log("Going down"); 
 	    		  var temp_arr = $snake.current_snake;
 	    		  var temp = [temp_arr[0][0] + 1, temp_arr[0][1]];
-	    		  temp_arr.pop();
-	    		  temp_arr.push(temp);
+	    		  var remove = temp_arr.pop();
+	    		  removeSnake(remove);
+	    		  temp_arr.unshift(temp);
 	    		  console.log($snake.current_snake);
 	    		  $snake.current_snake = temp_arr;
 	    		  console.log($snake.current_snake);
@@ -70,23 +72,31 @@ $(document).ready(function(){
 	    case "l": console.log("Going left"); 
 	    		  var temp_arr = $snake.current_snake;
 	    		  var temp = [temp_arr[0][0], temp_arr[0][1] - 1];
-	    		  temp_arr.pop();
-	    		  temp_arr.push(temp);
+	    		  var remove = temp_arr.pop();
+	    		  removeSnake(remove);
+	    		  temp_arr.unshift(temp);
 	    		  console.log($snake.current_snake);
 	    		  $snake.current_snake = temp_arr;
 	    		  console.log($snake.current_snake);
 	    		  break;
 	    case "r": console.log("Going right"); 
 	    		  var temp_arr = $snake.current_snake;
-	    		  var temp = [temp_arr[0][0], temp_arr[0][1 + 1]];
-	    		  temp_arr.pop();
-	    		  temp_arr.push(temp);
+	    		  var temp = [temp_arr[0][0], temp_arr[0][1] + 1];
+	    		  var remove = temp_arr.pop();
+	    		  removeSnake(remove);
+	    		  temp_arr.unshift(temp);
 	    		  console.log($snake.current_snake);
 	    		  $snake.current_snake = temp_arr;
 	    		  console.log($snake.current_snake);
 	    		  break;
 	  }
 	};
+
+	var removeSnake = function(param){
+	  var first = param[0];
+	  var second = param[1];
+	  $('#'+ first + '\\.' + second).removeClass("blue");
+	}
 
 	var showSnake = function(){
 	  current_array = $snake.current_snake;
@@ -124,7 +134,7 @@ $(document).ready(function(){
 		  console.log($snake.current_snake[i]);
 		}
 		
-
+		showSnake();
 	});
 
 	$("#container").keypress(function(event){
@@ -141,8 +151,10 @@ $(document).ready(function(){
 	    default: break;
 	  }
 	  console.log($snake.current_direction);
+	  showSnake();
 	  move();
-		showSnake();
+	  showSnake();
+		
 	});
 
 	var testFunctions = function(){
