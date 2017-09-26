@@ -112,7 +112,11 @@ $(document).ready(function(){
 	}
 
 	var gameLoop = function(){
-    
+      setInterval(function(){
+        move();
+        showSnake();
+      },1000);
+
 	}
 
 
@@ -135,6 +139,7 @@ $(document).ready(function(){
 		}
 		
 		showSnake();
+		gameLoop();
 	});
 
 	$("#container").keypress(function(event){

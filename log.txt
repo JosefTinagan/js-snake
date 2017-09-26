@@ -2,4 +2,4 @@
  Finished move function
 
  Figure out how to make it "life-like"
- 
+ Add food 
