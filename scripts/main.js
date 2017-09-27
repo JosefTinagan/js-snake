@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 	var render = function(){
 	  var half = 20;
-	  for(var i = 1; i <= $grid.rows; i++){
+	  for(var i = 1; i <= $grid.rows ; i++){
 	    for(var j = 1; j <= $grid.columns; j++){
 	      
 	      
@@ -111,13 +111,51 @@ $(document).ready(function(){
 
 	}
 
+	var checkBorder = function(){
+		var rows = $grid.rows;
+		var columns = $grid.columns;
+		console.log("rows: " + rows + " columns: " + columns);
+		var top_border = getArray([1,columns], "top");
+		var bottom_border = getArray([rows,columns], "bottom");
+		var left_border = getArray([1,rows], "left");
+		var right_border = getArray([columns,rows], "right");
+		
+	}
+
+	var getArray = function(param, flag){
+		console.log(param);
+		var x = param[0];
+		var y = param[1];
+		console.log(x + " " + y);
+		var arr = [];
+		for(var i = 1; i <= y; i++){
+		  if(flag == 'top' || flag == 'bottom'){
+		    var temp = [x,i];
+		    arr.push(temp);
+		  } else if (flag == 'right' || flag == 'left'){
+		    var temp = [i,x];
+		    arr.push(temp);
+		  }
+		}
+		for(var i = 0; i < arr.length; i++){
+		  console.log(arr[i]);
+		}
+		return arr;
+	}
+
 	var gameLoop = function(){
-      setInterval(function(){
+      var gameloop = setInterval(function(){
         move();
         showSnake();
       },1000);
-
+      
+      $('#stop').click(function(){
+      	console.log("stopping loop");
+        clearInterval(gameloop);
+        checkBorder();
+      });
 	}
+
 
 
 	$("#start").click(function(){
@@ -139,7 +177,6 @@ $(document).ready(function(){
 		}
 		
 		showSnake();
-		gameLoop();
 	});
 
 	$("#container").keypress(function(event){
@@ -156,22 +193,11 @@ $(document).ready(function(){
 	    default: break;
 	  }
 	  console.log($snake.current_direction);
-	  showSnake();
-	  move();
-	  showSnake();
+	  gameLoop();
 		
 	});
 
-	var testFunctions = function(){
-		console.log("Testing Cell Function");
-		var test_cell = new Cell("testing content");
-		console.log(test_cell.content);
-		var test_cell2 = new Cell();
-		console.log(test_cell2.content);
-		var test_grid = new Grid();
-		console.log(test_grid);
-		console.log(test_grid.grid);
-	};
+	
 });	
 
 /*
