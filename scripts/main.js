@@ -111,15 +111,27 @@ $(document).ready(function(){
 
 	}
 
+	var $top_border = [];
+	var $bottom_border = [];
+	var $left_border = [];
+	var $right_border = [];
+
 	var checkBorder = function(){
+	  for()
+
+	}
+
+
+	var getBorders = function(){
 		var rows = $grid.rows;
 		var columns = $grid.columns;
 		console.log("rows: " + rows + " columns: " + columns);
-		var top_border = getArray([1,columns], "top");
-		var bottom_border = getArray([rows,columns], "bottom");
-		var left_border = getArray([1,rows], "left");
-		var right_border = getArray([columns,rows], "right");
+		$top_border = getArray([1,columns], "top");
+		$bottom_border = getArray([rows,columns], "bottom");
+		$left_border = getArray([1,rows], "left");
+		$right_border = getArray([columns,rows], "right");
 		
+
 	}
 
 	var getArray = function(param, flag){
@@ -177,6 +189,7 @@ $(document).ready(function(){
 		}
 		
 		showSnake();
+		getBorders();
 	});
 
 	$("#container").keypress(function(event){
