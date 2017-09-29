@@ -117,21 +117,36 @@ $(document).ready(function(){
 	var $right_border = [];
 
 	var checkBorder = function(){
-	  for()
+	  console.log("Entering checkBorder function...");
 
+	  var current_snake_array = $snake.current_snake;
+	  var borders = [$top_border, $bottom_border, $left_border, $right_border];
+	  for(var i = 0; i < borders.length; i++){
+	    for(var j = 0; j < borders[i].length; j++){
+	      for(var k = 0; k < current_snake_array.length; k++){
+	        if(current_snake_array[k][0] === borders[i][j][0] && current_snake_array[k][1] === borders[i][j][1]){
+	          console.log("game over");
+	          return true;
+	        }
+	      }
+	    }
+	  }
+
+	  console.log("Exiting checkBorder function");
 	}
 
-
 	var getBorders = function(){
+		console.log("Entering getBorder function");
+
 		var rows = $grid.rows;
 		var columns = $grid.columns;
 		console.log("rows: " + rows + " columns: " + columns);
-		$top_border = getArray([1,columns], "top");
-		$bottom_border = getArray([rows,columns], "bottom");
-		$left_border = getArray([1,rows], "left");
-		$right_border = getArray([columns,rows], "right");
+		$top_border = getArray([0,columns], "top");
+		$bottom_border = getArray([rows + 1,columns], "bottom");
+		$left_border = getArray([0,rows], "left");
+		$right_border = getArray([columns,rows + 1], "right");
 		
-
+		console.log("Exiting getBorder Function");
 	}
 
 	var getArray = function(param, flag){
@@ -159,12 +174,16 @@ $(document).ready(function(){
       var gameloop = setInterval(function(){
         move();
         showSnake();
+        var isOutofBounds = checkBorder();
+        if(isOutofBounds){
+          clearInterval(gameloop);
+        }
       },1000);
       
       $('#stop').click(function(){
       	console.log("stopping loop");
         clearInterval(gameloop);
-        checkBorder();
+        
       });
 	}
 
@@ -190,6 +209,7 @@ $(document).ready(function(){
 		
 		showSnake();
 		getBorders();
+
 	});
 
 	$("#container").keypress(function(event){
