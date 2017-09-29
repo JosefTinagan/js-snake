@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	var $food = {
+	  content: " ",
+	}
+
 	var $snake= {
 	  position: [20,20],
 	  initial_direction: 'r',
@@ -42,9 +46,6 @@ $(document).ready(function(){
 	//  $('#grid div:nth-child(' + 100 + ')').text("0");
 	};
 
-	var newTurn = function(){
-
-	}
 
 	var move = function(param){
 	  direction = $snake.current_direction

@@ -3,3 +3,8 @@
 
  Figure out how to make it "life-like"
  Add food 
+
+9/29/2017
+ Finished checkBorder function
+
+ Figure out the food system
