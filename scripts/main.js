@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-	var $food = {
-	  content: " ",
-	}
-
 	var $snake= {
 	  position: [20,20],
 	  initial_direction: 'r',
@@ -25,6 +21,22 @@ $(document).ready(function(){
 	  	this.columns = x;
 	  }
 	};
+
+	var $food = {
+	  content: " ",
+	  current_position: [10,10],
+	  spawnFood: function(){
+	    console.log("Spawning Food");
+	    var temp = [Math.floor((Math.random * $grid.rows) + 1), Math.floor((Math.random * $grid.columns) + 1)];
+	    changeFoodPosition(temp);
+	  },
+	  changeFoodPosition: function(param){
+	    $food.current_position = param;
+	  },
+	  showFood: function(){
+	    var pos = current_position;
+	  }
+	}
 
 	var render = function(){
 	  var half = 20;
