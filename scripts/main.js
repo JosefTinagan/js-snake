@@ -44,8 +44,17 @@ $(document).ready(function(){
 	    var second = $food.current_position[1];
 	    console.log(first);
 	    console.log(second);
-	    var c = $('#'+ first + '\\.' + second).addClass("red");
+	    var c = $('#'+ first + '\\.' + second).addClass("food");
 	    console.log(c);
+	  },
+	  removeFood: function(){
+	    console.log("Removing Food");
+	    var first = $food.current_position[0];
+	    var second = $food.current_position[1];
+	    console.log(first);
+	    console.log(second);
+	    $('#'+ first + '\\.' + second).removeClass("food");
+
 	  }
 	}
 
@@ -143,12 +152,10 @@ $(document).ready(function(){
 	var isFood = function(){
 	  var current_snake = $snake.current_snake;
 	  var food_position = $food.current_position;
-	  for(var i = 0; i < current_snake.length; i++){
-	  	if(current_snake[i][0] == food_position[0] && current_snake[i][1] == food_position[1]){
-	  	  return true;
-	  	} else {
-	  	  return false;
-	  	}
+	  if(current_snake[current_snake.length - 1][0] == food_position[0] && current_snake[current_snake.length -1][1] == food_position[1]){
+	    return true;
+	  } else {
+	  	return false
 	  }
 	}
 
@@ -216,6 +223,9 @@ $(document).ready(function(){
         }
         if(isFood()){
           console.log("Eating Food");
+          $snake.current_snake.push($food.current_position)
+          $food.removeFood();
+          $food.spawnFood();
         }
 
       },1000);
@@ -250,6 +260,7 @@ $(document).ready(function(){
 		showSnake();
 		getBorders();
 		$food.spawnFood();
+		gameLoop();
 	});
 
 	$("#container").keypress(function(event){
@@ -266,7 +277,6 @@ $(document).ready(function(){
 	    default: break;
 	  }
 	  console.log($snake.current_direction);
-	  gameLoop();
 		
 	});
 

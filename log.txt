@@ -14,3 +14,8 @@
 
  To do:
  	- Add a showFood function
+
+ 		8:25 PM
+
+ 		- Finished showFood function
+ 		- Continue isFood function
