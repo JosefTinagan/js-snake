@@ -140,6 +140,18 @@ $(document).ready(function(){
 	var $left_border = [];
 	var $right_border = [];
 
+	var isFood = function(){
+	  var current_snake = $snake.current_snake;
+	  var food_position = $food.current_position;
+	  for(var i = 0; i < current_snake.length; i++){
+	  	if(current_snake[i][0] == food_position[0] && current_snake[i][1] == food_position[1]){
+	  	  return true;
+	  	} else {
+	  	  return false;
+	  	}
+	  }
+	}
+
 	var checkBorder = function(){
 	  console.log("Entering checkBorder function...");
 
@@ -202,6 +214,10 @@ $(document).ready(function(){
         if(isOutofBounds){
           clearInterval(gameloop);
         }
+        if(isFood()){
+          console.log("Eating Food");
+        }
+
       },1000);
       
       $('#stop').click(function(){
