@@ -8,3 +8,9 @@
  Finished checkBorder function
 
  Figure out the food system
+
+10/3/2017
+ Added spawnFood and changeCurrentPosition functions
+
+ To do:
+ 	- Add a showFood function

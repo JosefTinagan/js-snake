@@ -27,14 +27,25 @@ $(document).ready(function(){
 	  current_position: [10,10],
 	  spawnFood: function(){
 	    console.log("Spawning Food");
-	    var temp = [Math.floor((Math.random * $grid.rows) + 1), Math.floor((Math.random * $grid.columns) + 1)];
-	    changeFoodPosition(temp);
+	    var temp = [Math.floor((Math.random() * $grid.rows) + 1), Math.floor((Math.random() * $grid.columns) + 1)];
+	    console.log(temp);
+	    $food.changeFoodPosition(temp);
+	    $food.showFood();
 	  },
 	  changeFoodPosition: function(param){
+	  	console.log("Changing Food Position");
+	  	console.log(param);
 	    $food.current_position = param;
 	  },
 	  showFood: function(){
-	    var pos = current_position;
+	  	console.log("Showing Food");
+	  	console.log($food.current_position);
+	    var first = $food.current_position[0];
+	    var second = $food.current_position[1];
+	    console.log(first);
+	    console.log(second);
+	    var c = $('#'+ first + '\\.' + second).addClass("red");
+	    console.log(c);
 	  }
 	}
 
@@ -222,7 +233,7 @@ $(document).ready(function(){
 		
 		showSnake();
 		getBorders();
-
+		$food.spawnFood();
 	});
 
 	$("#container").keypress(function(event){
