@@ -270,10 +270,27 @@ $(document).ready(function(){
 	  //Arrow Right : 39
 	  // Arrow Down : 40
 	  switch(event.keyCode){
-	    case 37: $snake.changeDirection("l"); break;
-	    case 38: $snake.changeDirection("u"); break;
-	    case 39: $snake.changeDirection("r"); break;
-	    case 40: $snake.changeDirection("d"); break;
+	    case 37: 
+	      if($snake.current_direction != "r"){
+	   	    $snake.changeDirection("l");
+	      } 
+	   	  break;
+	    case 38: 
+	      if($snake.current_direction != "d"){
+	       $snake.changeDirection("u");
+	      }
+	      break;
+
+	    case 39: 
+	      if($snake.current_direction != "l"){
+	        $snake.changeDirection("r");
+	      }
+	      break;
+
+	    case 40:
+	      if($snake.current_direction != "u"){
+	        $snake.changeDirection("d");
+	      }
 	    default: break;
 	  }
 	  console.log($snake.current_direction);

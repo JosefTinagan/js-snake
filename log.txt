@@ -25,3 +25,4 @@
 
 	- Figure out the logic for the snake not eating himself
 	- Can't turn opposite direction 
+	
