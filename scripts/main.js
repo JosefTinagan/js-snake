@@ -78,6 +78,34 @@ $(document).ready(function(){
 	//  $('#grid div:nth-child(' + 100 + ')').text("0");
 	};
 
+	var gameLoop = function(){
+	  var interval = 1000;
+	  setTimeout(loop, interval);
+
+	  function loop(){
+	    move();
+	    showSnake();
+	    var isOutofBounds = checkBorder();
+        if(isOutofBounds){
+          clearTimeout(loop);
+        }
+        if(isFood()){
+          console.log("Eating Food");
+          $snake.current_snake.push($food.current_position)
+          $food.removeFood();
+          $food.spawnFood();
+          interval -= 50;
+        }
+        setTimeout(loop,interval);
+	  }
+      
+      $('#stop').click(function(){
+      	console.log("stopping loop");
+        clearTimeout(loop);
+        
+      });
+	}
+
 
 	var move = function(param){
 	  direction = $snake.current_direction
@@ -213,32 +241,6 @@ $(document).ready(function(){
 		return arr;
 	}
 
-	var gameLoop = function(){
-      var gameloop = setInterval(function(){
-        move();
-        showSnake();
-        var isOutofBounds = checkBorder();
-        if(isOutofBounds){
-          clearInterval(gameloop);
-        }
-        if(isFood()){
-          console.log("Eating Food");
-          $snake.current_snake.push($food.current_position)
-          $food.removeFood();
-          $food.spawnFood();
-        }
-
-      },1000);
-      
-      $('#stop').click(function(){
-      	console.log("stopping loop");
-        clearInterval(gameloop);
-        
-      });
-	}
-
-
-
 	$("#start").click(function(){
 	//	createArray();
 	//	console.log("Starting Render");
@@ -274,7 +276,7 @@ $(document).ready(function(){
 	      if($snake.current_direction != "r"){
 	   	    $snake.changeDirection("l");
 	      } 
-	   	  break;
+	   	  break;t
 	    case 38: 
 	      if($snake.current_direction != "d"){
 	       $snake.changeDirection("u");
