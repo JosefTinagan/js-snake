@@ -58,6 +58,16 @@ $(document).ready(function(){
 	  }
 	}
 
+	var $score = {
+	  number: 0,
+	  addScore: function(){
+	    $score.number += 10;
+	  },
+	  showScore: function(){
+	    $('#score').html('Score: ' + $score.number);
+	  }
+	}
+
 	var render = function(){
 	  var half = 20;
 	  for(var i = 1; i <= $grid.rows ; i++){
@@ -94,6 +104,9 @@ $(document).ready(function(){
           $snake.current_snake.push($food.current_position)
           $food.removeFood();
           $food.spawnFood();
+          console.log("Adding score");
+          $score.addScore();
+          $score.showScore();
           interval -= 50;
         }
         setTimeout(loop,interval);
@@ -262,6 +275,7 @@ $(document).ready(function(){
 		showSnake();
 		getBorders();
 		$food.spawnFood();
+		$score.showScore();
 		gameLoop();
 	});
 
