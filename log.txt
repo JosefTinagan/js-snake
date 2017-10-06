@@ -26,7 +26,12 @@
 	- Figure out the logic for the snake not eating himself
 	- Can't turn opposite direction 
 
-105/2017
+10/5/2017
 	- Finished Code for not bing able to change to the opposite direction
 
 	- Add a code for making the snake faster
+
+10/6/2017
+	- Finished adding code for making the snake faster after every eaten food
+
+	- Add scoring system
