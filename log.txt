@@ -35,3 +35,8 @@
 	- Finished adding code for making the snake faster after every eaten food
 
 	- Add scoring system
+
+10/7/2017
+	- Finished adding code for scoring
+
+	- Use pictures for the snake

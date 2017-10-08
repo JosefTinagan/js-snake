@@ -2,9 +2,9 @@ $(document).ready(function(){
 
 	var $snake= {
 	  position: [20,20],
-	  initial_direction: 'r',
-	  current_direction: 'r',
-	  current_snake: [[20,20],[20,21]],
+	  initial_direction: 'l',
+	  current_direction: 'l',
+	  current_snake: [[20,20],[20,21],[20,22],[20,23],[20,24],[20,25],[20,26]],
 	  changeDirection: function(param){
 	    this.current_direction = param;
 	  }
@@ -96,10 +96,15 @@ $(document).ready(function(){
 	    move();
 	    showSnake();
 	    var isOutofBounds = checkBorder();
-        if(isOutofBounds){
+	    if(checkSnake()){
+	      console.log("Stop hitting yourself");
+	      clearTimeout(loop);
+	    }
+        else if(isOutofBounds){
+        	console.log("Out of Bounds");
           clearTimeout(loop);
         }
-        if(isFood()){
+        else if(isFood()){
           console.log("Eating Food");
           $snake.current_snake.push($food.current_position)
           $food.removeFood();
@@ -108,8 +113,11 @@ $(document).ready(function(){
           $score.addScore();
           $score.showScore();
           interval -= 50;
+          setTimeout(loop,interval);
         }
-        setTimeout(loop,interval);
+        else{
+          setTimeout(loop,interval);
+        }
 	  }
       
       $('#stop').click(function(){
@@ -189,6 +197,27 @@ $(document).ready(function(){
 	var $bottom_border = [];
 	var $left_border = [];
 	var $right_border = [];
+
+	var checkSnake = function(){
+	  var current_snake = $snake.current_snake;
+	  console.log(current_snake.length);
+	  for(var i = 1; i < current_snake.length; i++){
+	  	console.log("Check Snake")
+	  	console.log(current_snake[0]);
+	  	console.log(current_snake[i]);
+	  	var flag = false;
+	    if(current_snake[0][0] === current_snake[i][0] && current_snake[0][1] === current_snake[i][1]){
+	      flag = true;
+	      } else {
+	      flag = false;
+	      }
+	    }
+	    
+	  if(flag){
+	  	return true;
+	  }
+
+	}
 
 	var isFood = function(){
 	  var current_snake = $snake.current_snake;
